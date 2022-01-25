@@ -44,16 +44,16 @@
           </div>
         </div>
       </nav>
-      {% if param %}
+      {% if params %}
       <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <strong>Success</strong> Updated the List.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       {% endif %}
 
       <div class="container">
         
-        <form action="/" method="POST">
+        <form action="/add" method="POST">
             <div class="row mb-3">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Enter your task here</label>
                 <div class="col-sm-10">
@@ -67,6 +67,21 @@
             
 
           </form>
+
+
+          {% for item in params %}
+          <p> {{ item.id}} | {{item.title }}</p>
+
+                {% if item.complete == False %}
+                <span> Not Completed </span>
+                {% else %}
+                <span> Completed </span>
+                {% endif %}
+                <a href="/complete/{{item.id}}">Update</a>
+                <a href="/delete/{{item.id}}">Delete</a>
+
+
+          {% endfor%}
       </div>
 </body>
 </html>
