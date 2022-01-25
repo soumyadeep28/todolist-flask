@@ -68,20 +68,25 @@
 
           </form>
 
+          <div class="container">
 
-          {% for item in params %}
-          <p> {{ item.id}} | {{item.title }}</p>
+            <table class="table table-striped"></table>
+            {% for item in params %}
+            {{ item.id}} | {{item.title }}
+               <tr>
+       
+                   {% if item.complete == False %}
+                   <span class="ui red label"> Not Completed </span>
+                   {% else %}
+                   <span> Completed </span>
+                   {% endif %}
+                   <a href="/complete/{{item.id}}"> <button  class="btn btn-dark">Update</button></a>
+                   <a href="/delete/{{item.id}}"><button  class="btn btn-dark">Delete</button></a>
+                   <hr>
+               </tr>
+               {% endfor%}
+            </table>
+          </div>
 
-                {% if item.complete == False %}
-                <span> Not Completed </span>
-                {% else %}
-                <span> Completed </span>
-                {% endif %}
-                <a href="/complete/{{item.id}}">Update</a>
-                <a href="/delete/{{item.id}}">Delete</a>
-
-
-          {% endfor%}
-      </div>
 </body>
 </html>
